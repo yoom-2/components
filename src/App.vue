@@ -1,32 +1,49 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <TestInput v-model='data.id' :label="info.id" />
+    <TestInput v-model="data.password" :label="info.pw" />
+
+    <TestBtn @click="handleButton(data)" />
   </div>
 </template>
 
+<script>
+import TestInput from './components/TestInput.vue'
+import TestBtn from "@/components/TestBtn";
+
+export default {
+  name: 'App',
+  components: {
+    TestInput,
+    TestBtn,
+  },
+  data() {
+    return {
+      data: {
+        id: '',
+        password: '',
+      },
+      info: {
+        id: 'ID',
+        pw: 'Password'
+      }
+    }
+
+  },
+  methods: {
+    handleButton(item) {
+      console.log("result::",item)
+      return item;
+    },
+  }
+}
+</script>
+
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  width: 300px;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 20px;
 }
 </style>
